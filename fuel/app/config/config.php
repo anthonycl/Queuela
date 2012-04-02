@@ -187,7 +187,7 @@ return array(
 		 */
 		'packages'  => array(
 			'orm',
-			'Sentry'
+			'sentry'
 		),
 
 		/**
