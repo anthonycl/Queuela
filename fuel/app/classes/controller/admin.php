@@ -8,7 +8,7 @@ class Controller_Admin extends Controller_Base {
 	{
 		parent::before();
 
-		if (!Sentry::check() and Request::active()->action != 'login')
+		if (!Sentry::check() and Request::active()->action != 'login' and Request::active()->action != '404')
 		{
 			Response::redirect('admin/login');
 		}
@@ -81,6 +81,10 @@ class Controller_Admin extends Controller_Base {
 		$this->template->content = View::factory('admin/dashboard');
 	}
 
+	public function action_404()
+	{
+		return Response::forge(ViewModel::forge('admin/404'), 404);
+	}
 }
 
 /* End of file admin.php */
