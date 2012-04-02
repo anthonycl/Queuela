@@ -6,5 +6,8 @@ class View_Admin_404 extends ViewModel
 	{
 		$messages = array('Aw, crap!', 'Bloody Hell!', 'Uh Oh!', 'Nope, not here.', 'Huh?');
 		$this->title = $messages[array_rand($messages)];
+
+		$this->template->title = 'Dashboard';
+		$this->template->content = View::factory('admin/404');
 	}
 }

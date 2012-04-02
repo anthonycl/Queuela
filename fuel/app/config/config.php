@@ -198,8 +198,7 @@ return array(
 		 *
 		 * A path must be set in module_paths for this to work.
 		 */
-		'modules'  => array(
-		),
+		'modules'  => array(),
 
 		/**
 		 * Classes to autoload & initialize even when not used

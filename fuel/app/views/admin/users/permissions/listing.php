@@ -17,11 +17,10 @@
 			<tr>
 				<td><?php echo $users_permission->type; ?></td>
 				<td><?php echo $users_permission->$type->name; ?></td>
-				<td><?php echo ucwords(implode(', ',json_decode(htmlspecialchars_decode($users_permission->permissions)))); ?></td>
+				<td><?php echo $users_permission->permissions; ?></td>
 				<td>
-					<?php echo Html::anchor('admin/users/permissions/view/'.$users_permission->id.'/'.$user->id, 'View'); ?> |
-					<?php echo Html::anchor('admin/users/permissions/edit/'.$users_permission->id.'/'.$user->id, 'Edit'); ?> |
-					<?php echo Html::anchor('admin/users/permissions/delete/'.$users_permission->id.'/'.$user->id, 'Delete', array('onclick' => "return confirm('Are you sure?')")); ?>
+					<?php echo Html::anchor('admin/users/permissions/edit/'.$users_permission->id.'/'.$user->id, 'Edit', array('class' => 'btn standard small')); ?>
+					<?php echo Html::anchor('admin/users/permissions/delete/'.$users_permission->id.'/'.$user->id, 'Delete', array('onclick' => "return confirm('Are you sure?')", 'class' => 'btn error small')); ?>
 	
 				</td>
 			</tr>

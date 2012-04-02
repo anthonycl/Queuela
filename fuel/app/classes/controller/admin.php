@@ -83,7 +83,13 @@ class Controller_Admin extends Controller_Base {
 
 	public function action_404()
 	{
-		return Response::forge(ViewModel::forge('admin/404'), 404);
+		$messages = array('Aw, crap!', 'Bloody Hell!', 'Uh Oh!', 'Nope, not here.', 'Huh?');
+		
+		// Pick one at Random
+		$message = $messages[rand(0,4)];
+
+		$this->template->title = $message;
+		$this->template->content = View::factory('admin/404', array('message' => $message));
 	}
 }
 

@@ -65,8 +65,9 @@ $(function() {
 		var width = 0;
 
 		$("#task-block-chart #inner .task").each(function(){
-			width = width + $(this).width();
-			console.log($(this).width());
+			var paddingLeft = parseInt($(this).css('padding-left').replace('px',''));
+			var paddingRight = parseInt($(this).css('padding-right').replace('px',''));
+			width = width + $(this).width() + paddingLeft + paddingRight; // For Padding
 		});
 		
 		$("#task-block-chart #inner").css("width", width);

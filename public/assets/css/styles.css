@@ -29,10 +29,17 @@ div.dataTables_wrapper {
 	-webkit-border-radius: 6px;
 	-moz-border-radius: 6px;
 	border-radius: 6px;
-	overflow: scroll;
+	overflow-x: scroll;
+	overflow-y: hidden;
 	text-align: left;
-	height: 250px;
+	height: auto;
 	position: relative;
+}
+
+#task-block-chart #task-block-dates {
+	height: 20px;
+	overflow: hidden;
+	margin-bottom: 15px;
 }
 
 #task-block-chart #task-block-dates div {
@@ -50,15 +57,26 @@ div.dataTables_wrapper {
 	height: 100%;
 }
 
-#task-block-chart div a {
+#task-block-chart .task-block div.task {
 	padding: 5px 10px;
-	display: block;
 	background-color: #9794d6;
-	color: #fff;
 	-webkit-border-radius: 6px;
 	-moz-border-radius: 6px;
 	border-radius: 6px;
 	position: relative;
+}
+
+#task-block-chart .task-block div.task a.view {
+	float: left;
+	color: #fff;
+}
+
+#task-block-chart .task-block div.task a.done {
+	float: right;
+}
+
+#task-block-chart .task-block div.task:last-child {
+	margin-right: 15px;
 }
 
 .clear {
@@ -68,4 +86,17 @@ div.dataTables_wrapper {
 .button-title {
 	float: right;
 	margin-top: -70px;
+}
+
+.text-center {
+	text-align: center;
+}
+
+div.description {
+	background-color: whitesmoke;
+	padding: 20px;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+	margin: 10px 0 15px;
 }

@@ -15,9 +15,9 @@
 				<td><?php echo $user->email; ?></td>
 				<td><?php echo Date::time_ago($user->last_login); ?></td>
 				<td>
-					<?php echo Html::anchor('admin/users/view/'.$user->id, 'View'); ?> |
-					<?php echo Html::anchor('admin/users/edit/'.$user->id, 'Edit'); ?> |
-					<?php echo Html::anchor('admin/users/delete/'.$user->id, 'Delete', array('onclick' => "return confirm('Are you sure?')")); ?>
+					<?php echo Html::anchor('admin/users/view/'.$user->id, 'Permissions', array('class' => 'btn success small')); ?>
+					<?php echo Html::anchor('admin/users/edit/'.$user->id, 'Edit', array('class' => 'btn standard small')); ?>
+					<?php echo Html::anchor('admin/users/delete/'.$user->id, 'Delete', array('onclick' => "return confirm('Are you sure?')", 'class' => 'btn error small')); ?>
 				</td>
 			</tr>
 		<?php endforeach; ?>

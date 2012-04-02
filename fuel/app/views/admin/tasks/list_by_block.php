@@ -1,4 +1,4 @@
-<?php echo Html::anchor('admin/tasks/listing_by_project', 'View by Project', array('class' => 'btn success button-title')); ?>
+<?php echo Html::anchor('admin/tasks/list_by_project', 'Organize by Project', array('class' => 'btn success button-title')); ?>
 <div class="clear"></div>
 
 <div id="task-block-chart">
@@ -6,7 +6,6 @@
 
 	<div id="inner">
 		<div id="task-block-dates"></div>
-		<br />
 
 		<div class="task-block">
 		<?php if ($projects): ?>
@@ -20,8 +19,10 @@
 					<?php $project = Model_Project::find($project_id); ?>
 					<?php foreach ($tasks as $task_id => $task): ?>
 						<?php $width = $task->blocks*$_s['task.block_spacing_px']; ?>
-						<div class="task" style="margin-left: <?=$left?>px;">
-							<?php echo Html::anchor('admin/tasks/view/'.$task->id, Str::truncate($task->name, intval($width/8)), array('style' => 'width: '.($width-20).'px;')); ?>
+						<div class="task" style="margin-left: <?=$left?>px; width: <?=$width-20?>px;">
+							<?php echo Html::anchor('admin/tasks/view/'.$task->id, Str::truncate($task->name, intval($width/8)), array('class' => 'view', 'style' => 'width: '.($width-75).'px;', 'title' => $task->name)); ?>
+							<?php echo Html::anchor('admin/tasks/change_status/'.$task->id.'/AwaitingApproval', 'Done', array('onclick' => "return confirm('Are you sure you want to mark this task as complete?')", 'class' => 'done btn success small')); ?>
+							<div class="clear"></div>
 						</div>
 						<?php $i++; $left = $left + $width; ?>
 					<?php endforeach; ?>

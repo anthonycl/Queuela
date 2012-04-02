@@ -24,10 +24,8 @@ class Controller_Admin_Users_Permissions extends Controller_Admin
 				if ($users_permission and $users_permission->save())
 				{
 					Session::set_flash('success', 'Added permission #'.$users_permission->id.'.');
-
 					Response::redirect('admin/users/view/'.$user->id);
 				}
-
 				else
 				{
 					Session::set_flash('error', 'Could not save users_permission.');
@@ -43,20 +41,28 @@ class Controller_Admin_Users_Permissions extends Controller_Admin
 
 		$this->template->title = "Add Permission";
 		$this->template->content = $view;
-
 	}
 
 	public function action_edit($id = null, $user_id = null)
 	{
 		$view = View::forge('admin/users/permissions/edit');
 		$user = Sentry::user(intval($user_id));
-	
+
 		$users_permission = Model_Users_Permission::find($id);
 		$val = Model_Users_Permission::validate('edit');
 
 		if ($val->run())
 		{
-			$permissions = json_encode(Input::post('permissions'));
+			$permissions = Input::post('permissions');
+			
+			if(in_array('all', $permissions))
+			{
+				$permissions = json_encode(array('all'));
+			}
+			else
+			{
+				$permissions = json_encode($permissions);
+			}
 
 			$users_permission->type = Input::post('type');
 			$users_permission->type_id = Input::post('type_id');
@@ -82,7 +88,7 @@ class Controller_Admin_Users_Permissions extends Controller_Admin
 			{
 				Session::set_flash('error', $val->show_errors());
 			}
-			
+
 			$this->template->set_global('users_permission', $users_permission, false);
 		}
 

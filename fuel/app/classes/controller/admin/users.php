@@ -20,7 +20,25 @@ class Controller_Admin_Users extends Controller_Admin
 	{
 		$view = View::forge('admin/users/view');
    		$view->set_global('user', Sentry::user(intval($id)));
-   		$view->set_global('users_permissions', Model_User::find($id)->users_permissions);
+   		
+   		$users_permissions = Model_User::find($id)->users_permissions;
+
+		foreach($users_permissions as $users_permission_key => $users_permission)
+		{
+			$permissions = json_decode(htmlspecialchars_decode($users_permission->permissions));
+
+			foreach($permissions as $permission_key => $permission)
+			{
+				$permission_types = $this->_s('permissions.permissions');
+				$permissions[$permission_key] = $permission_types[$permission];
+			}
+			
+			$users_permission->permissions = ucwords(implode(', ', $permissions));
+			$users_permissions[$users_permission_key] = $users_permission;
+		}
+
+		$view->set_global('users_permissions', $users_permissions);
+		$view->set_global('user', Sentry::user(intval($id)));
 
 		$this->template->title = "View User";
 		$this->template->content = $view;

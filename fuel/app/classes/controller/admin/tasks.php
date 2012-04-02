@@ -3,12 +3,12 @@ class Controller_Admin_Tasks extends Controller_Admin
 {
 	public function action_index()
 	{
-		Response::redirect('admin/tasks/listing_by_project');
+		Response::redirect('admin/tasks/list_by_block');
 	}
 
-	public function action_listing_by_project()
+	public function action_list_by_project()
 	{
-		$view = View::forge('admin/tasks/listing_by_project');
+		$view = View::forge('admin/tasks/list_by_project');
 		
 		$user_projects = array();
 		$user_permissions = Model_User::find($this->current_user->id)->users_permissions;
@@ -44,9 +44,9 @@ class Controller_Admin_Tasks extends Controller_Admin
 		$this->template->content = $view;
 	}
 
-	public function action_listing_by_blocks()
+	public function action_list_by_block()
 	{
-		$view = View::forge('admin/tasks/listing_by_blocks');
+		$view = View::forge('admin/tasks/list_by_block');
 		
 		$user_projects = array();
 		$user_permissions = Model_User::find($this->current_user->id)->users_permissions;
@@ -78,10 +78,9 @@ class Controller_Admin_Tasks extends Controller_Admin
 		}
 
 		$user_projects = Arr::sort($user_projects, 'null.null.blocks');
-		//var_dump($user_projects);
 
 		$view->set_global('projects', $user_projects);
-		$this->template->title = "Tasks by Blocks";
+		$this->template->title = "Tasks by Block";
 		$this->template->content = $view;
 	}
 

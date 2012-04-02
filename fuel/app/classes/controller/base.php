@@ -20,7 +20,7 @@ class Controller_Base extends Controller_Template {
 
 	public function _s($name)
 	{
-		$setting = Model_Setting::get_setting($name);
-		return Model_Setting::format_output($setting->get_value());
+		$setting = Model_Setting::find_by_name($name);
+		return Model_Setting::format_output($setting->value);
 	}
 }
