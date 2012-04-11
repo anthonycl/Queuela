@@ -1,4 +1,5 @@
 *.DS_Store
 *.htaccess
+!fuel/.htaccess
 fuel/app/logs/*
 fuel/app/config/db.php
